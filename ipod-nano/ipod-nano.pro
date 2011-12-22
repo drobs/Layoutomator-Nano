@@ -24,6 +24,7 @@ SOURCES += \
 	src/IPodFrameWidget.cc \
 	src/helpers.cc \
 	src/apps/PeepholeApp.cc \
+        src/apps/LayoutApp.cc \
 	src/apps/PaintApp.cc \
 	src/apps/MusicApp.cc \
 	src/apps/ClockApp.cc \
@@ -56,6 +57,7 @@ HEADERS += \
 	src/IPodFrameWidget.h \
 	src/helpers.h \
 	src/apps/PeepholeApp.h \
+        src/apps/LayoutApp.h \
 	src/apps/PaintApp.h \
 	src/apps/MusicApp.h \
 	src/apps/ClockApp.h \
@@ -82,8 +84,7 @@ HEADERS += \
 	src/widgets/PickerWidget.h \
 	src/widgets/OverlayWidget.h \
 	src/apps/MenuApp.h \
-	src/apps/InfoApp.h \
-    src/apps/HelloApp.h
+	src/apps/InfoApp.h
 FORMS +=
 
 INCLUDEPATH += src src/apps src/widgets
@@ -94,6 +95,7 @@ qtcAddDeployment()
 
 RESOURCES += \
 	resources.qrc
+
 
 
 

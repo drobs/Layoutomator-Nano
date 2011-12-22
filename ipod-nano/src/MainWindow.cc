@@ -9,6 +9,7 @@
 #include "apps/MapApp.h"
 #include "apps/GestureApp.h"
 #include "apps/MarkingMenuApp.h"
+#include "apps/LayoutApp.h"
 #include "apps/MultiTapApp.h"
 #include "apps/PickerApp.h"
 #include "apps/PeepholeApp.h"
@@ -50,6 +51,7 @@ namespace ipn
 		m_interactiveMenuApp->titleBar()->addButton(TitleBarWidget::BUTTON_BACK);
 		m_interactiveMenuApp->addButton(MenuApp::TopLeft, "Paint", ":/img/icons/icon.png");
 		m_interactiveMenuApp->addButton(MenuApp::TopRight, "Map", ":/img/icons/icon.png");
+                m_interactiveMenuApp->addButton(MenuApp::BottomRight, "Layout", ":/img/icons/icon.png");
 		m_interactiveMenuApp->addButton(MenuApp::BottomLeft, "Peephole", ":/img/icons/icon.png");
 		m_interactiveMenuApp->titleBar()->setTitle("interactive apps");
 
@@ -58,7 +60,7 @@ namespace ipn
 		m_inputMenuApp->addButton(MenuApp::TopLeft, "disabled", ":/img/icons/icon.png");
 		m_inputMenuApp->button(MenuApp::TopLeft)->setEnabled(false);
 		m_inputMenuApp->addButton(MenuApp::TopRight, "Gestures", ":/img/icons/icon.png");
-		m_inputMenuApp->addButton(MenuApp::BottomLeft, "MultiTap", ":/img/icons/icon.png");
+                m_inputMenuApp->addButton(MenuApp::BottomLeft, "MultiTap", ":/img/icons/icon.png");
 		m_inputMenuApp->titleBar()->setTitle("input apps");
 
 		m_choiceMenuApp = new MenuApp();
@@ -78,6 +80,7 @@ namespace ipn
 		m_peepholeApp = new PeepholeApp();
 		connect(m_frameWidget, SIGNAL(frameMoved(const QPoint)), m_peepholeApp, SLOT(moveContents(const QPoint)));
 		m_gestureApp = new GestureApp();
+                m_layoutApp = new LayoutApp();
 		m_markingMenuApp = new MarkingMenuApp();
 		m_multiTapApp = new MultiTapApp();
 		m_pickerApp = new PickerApp();
@@ -120,6 +123,7 @@ namespace ipn
 		connect(m_inputMenuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToMultiTapApp()));
 		connect(m_interactiveMenuApp, SIGNAL(topLeftButtonClicked()), this, SLOT(switchToPaintApp()));
 		connect(m_interactiveMenuApp, SIGNAL(topRightButtonClicked()), this, SLOT(switchToMapApp()));
+                connect(m_interactiveMenuApp, SIGNAL(bottomRightButtonClicked()), this, SLOT(switchToLayoutApp()));
 		connect(m_interactiveMenuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToPeepholeApp()));
 		connect(m_choiceMenuApp, SIGNAL(topLeftButtonClicked()), this, SLOT(switchToGUIApp()));
 		connect(m_choiceMenuApp, SIGNAL(topRightButtonClicked()), this, SLOT(switchToMarkingMenuApp()));
@@ -134,6 +138,7 @@ namespace ipn
 		connect(m_mapApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
 		connect(m_peepholeApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
 		connect(m_gestureApp, SIGNAL(quitButtonClicked()), m_frameWidget, SLOT(popApp()));
+                connect(m_layoutApp, SIGNAL(quitButtonClicked()), m_frameWidget, SLOT(popApp()));
 		connect(m_paintApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
 		connect(m_musicApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
 		connect(m_pickerApp->titleBar(), SIGNAL(rightButtonClicked()), m_frameWidget, SLOT(popApp()));
@@ -177,6 +182,7 @@ namespace ipn
 	void MainWindow::switchToPeepholeApp()			{m_frameWidget->pushApp(m_peepholeApp);}
 	void MainWindow::switchToGestureApp()			{m_frameWidget->pushApp(m_gestureApp);}
 	void MainWindow::switchToMarkingMenuApp()		{m_frameWidget->pushApp(m_markingMenuApp);}
+        void MainWindow::switchToLayoutApp()			{m_frameWidget->pushApp(m_layoutApp);}
 	void MainWindow::switchToMultiTapApp()			{m_frameWidget->pushApp(m_multiTapApp);}
 	void MainWindow::switchToPickerApp()			{m_frameWidget->pushApp(m_pickerApp);}
 

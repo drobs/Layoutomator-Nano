@@ -24,6 +24,7 @@ namespace ipn
 
 	class App;
 	class MenuApp;
+        class LayoutApp;
 	class InfoApp;
 	class ClockApp;
 	class PaintApp;
@@ -91,6 +92,7 @@ namespace ipn
 			void switchToMapApp();
 			void switchToPeepholeApp();
 			void switchToGestureApp();
+                        void switchToLayoutApp();
 			void switchToMarkingMenuApp();
 			void switchToMultiTapApp();
 			void switchToPickerApp();
@@ -112,6 +114,7 @@ namespace ipn
 			MapApp *m_mapApp;
 			PeepholeApp *m_peepholeApp;
 			GestureApp *m_gestureApp;
+                        LayoutApp *m_layoutApp;
 			MarkingMenuApp *m_markingMenuApp;
 			MultiTapApp *m_multiTapApp;
 			PickerApp *m_pickerApp;
